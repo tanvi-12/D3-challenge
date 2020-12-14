@@ -43,13 +43,13 @@ function xScale(healthData, chosenXAxis) {
 
 function yScale(healthData, chosenYAxis) {
   // create scales
-  var xLinearScale = d3.scaleLinear()
+  var yLinearScale = d3.scaleLinear()
     .domain([d3.min(healthData, d => d[chosenYAxis]) - 1,
       d3.max(healthData, d => d[chosenYAxis]) + 1
     ])
     .range([height, 0]);
 
-  return YLinearScale;
+  return yLinearScale;
 
 }
 
@@ -64,7 +64,7 @@ function renderAxes(newXScale, xAxis) {
   return xAxis;
 }
 
-function renderAxes(newXScale, yAxis) {
+function renderAxes(newYScale, yAxis) {
   var leftAxis = d3.axisBottom(newYScale);
 
   yAxis.transition()
@@ -76,7 +76,7 @@ function renderAxes(newXScale, yAxis) {
 
 // function used for updating circles group with a transition to
 // new circles
-function renderCircles(circlesGroup, newXScale, chosenXAxis) {
+function renderCircles(circlesGroup,  newXScale, chosenXAxis, newYScale, chosenYAxis) {
 
   circlesGroup.transition()
     .duration(1000)
@@ -85,14 +85,6 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis) {
   return circlesGroup;
 }
 
-function renderCircles(circlesGroup, newXScale, chosenYAxis) {
-
-  circlesGroup.transition()
-    .duration(1000)
-    .attr("cy", d => newXScale(d[chosenYAxis]));
-
-  return circlesGroup;
-}
 
 // function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, circlesGroup) {
@@ -254,7 +246,7 @@ xlabelsGroup.selectAll("text")
       // replaces chosenXAxis with value
       chosenXAxis = value;
 
-      // console.log(chosenXAxis)
+      console.log(chosenXAxis)
 
       // functions here found above csv import
       // updates x scale for new data
@@ -316,7 +308,7 @@ ylabelsGroup.selectAll("text")
     // replaces chosenYAxis with value
     chosenYAxis = value;
 
-    // console.log(chosenXAxis)
+    // console.log(chosenYAxis)
 
     // functions here found above csv import
     // updates y scale for new data
