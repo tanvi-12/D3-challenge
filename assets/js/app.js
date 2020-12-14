@@ -212,7 +212,7 @@ var incomeLabel = xlabelsGroup.append("text")
   .text("Household Income (Median)");
 
 // append y axis lebels
-var ylabelsgroup = chartGroup.append("g")
+var ylabelsGroup = chartGroup.append("g")
 
 var healthcareLabel = ylabelsGroup.append("text")
   .attr("transform", "rotate(-90)")
